@@ -1,9 +1,9 @@
-//Dependencies
+//Dependencies.
 const inquirer = require("inquirer");
 const mysql = require("mysql");
 const cTable = require("console.table");
 
-//--------------------------NOT SURE YET -------------------------01
+//--------------------------NOT SURE YET -------------------------001
 //Using environment variables to connect to database
 // const Sequelize = require('sequelize');
 
@@ -20,31 +20,31 @@ const cTable = require("console.table");
 //         port: 3306
 //     }
 // );
-//--------------------------------------------------------------01
+//--------------------------------------------------------------001
 module.exports = sequelize;
 
-//Connection information for the SQL database
+//Connection information for the SQL database.
 var connection = mysql.createConnection({
     host: "localhost",
-    //My port
+    //My port.
     port: 3301,
-    //My Username
+    //My Username.
     user: "newuser",
-    //My password
+    //My password.
     password: "xxxxxxx",
     database: "company_db"
 });
 
-//Connect to the MYSQL server and SQL database
+//Connect to the MYSQL server and SQL database.
 connection.connect(function(err) {
     if (err) throw err;
-    //Run the promptOne function after the connection is made to prompt the user
+    //Run the promptOne function after the connection is made to prompt the user.
     promptOne();
 });
 
-//This function will prompt the user on which action to take
+// 01 - This function will prompt the user on which action to take.
 function promptOne() {
-    //First action question
+    //First action question.
     inquirer
         .prompt([{
             type: "checkbox",
@@ -96,7 +96,53 @@ function promptOne() {
                     break;
             };
         });
+};
 
+// 02 - This function will display all employees.
+function vieAllEmp() {
+
+    connection.query("SELECT * FROM employee", function(err, data) {
+        console.table(data);
+        promptOne();
+    });
+};
+
+// 03 - This function will display all departments. C/P from 02 & update
+function vieAllEmpByDep() {
+
+    connection.query("SELECT * FROM department", function(err, data) {
+        console.table(data);
+        promptOne();
+    });
+};
+
+// 04 - This function will add employees. C/P from 01 and "input" statements below.
+function addEmp() {
+    inquirer
+        .prompt([{
+            type: "input",
+            message: "What is the employees first name?",
+            name: "addEmpFirNam"
+        }, {
+            type: "input",
+            message: "What is the employee's last name?",
+            name: "addEmpLasNam"
+        }, {
+            type: "input",
+            message: "What is the employee's role ID?",
+            name: "addEmpRolId"
+        }, {
+            type: "input",
+            message: "What is the employee's manager's ID?",
+            name: "addEmpManId"
+        }]).then(function(res) {
+            connection.query("INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (?, ?, ?, ?)", [res.addEmpFirNam, res.addEmpLasNam, res.addEmpRolId, res.addEmpManId],
+                function(err, data) {
+                    if (err) throw err;
+                    console.table("Employee was added");
+                    promptOne();
+                });
+        });
 };
 
 
@@ -113,9 +159,7 @@ function promptOne() {
 
 
 
-
-
-
+// Info from "11-Express" week.
 //     {
 //         type: "input",
 //         message: "What is the employee's first name?",
@@ -146,7 +190,7 @@ function promptOne() {
 //     }
 // ])
 
-//     //this write a read me 
+//     //this write a read me
 // .then(function(data) {
 //     var filename = data.sport + ".json";
 
