@@ -224,6 +224,28 @@ function updEmpRol() {
         });
 };
 
+// 09 - This block will update employee position. C/P from 08.
+
+// function updEmpMan() {
+//     inquirer
+//         .prompt([{
+//             type: "input",
+//             message: "What manager would you like to update? (first name ONLY)",
+//             name: "name"
+//         }, {
+//             type: "input",
+//             message: "Enter the new manager ID:",
+//             name: "number"
+//         }]).then(function(res) {
+//             connection.query("UPDATE position SET role_id = ? WHERE first_name = ?", [res.role_id, res.name],
+//                 function(err, data) {
+//                     if (err) throw err;
+//                     console.table(data);
+//                 });
+//             promptOne();
+//         });
+// };
+
 
 
 
