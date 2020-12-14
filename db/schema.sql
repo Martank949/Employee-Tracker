@@ -7,41 +7,40 @@ USE company_db;
 
 -- Creates the table "department" within company_db --
 CREATE TABLE department (
+    -- A primary key that auto-increments--
+    id INT AUTO_INCREMENT NOT NULL,
     -- Creates a numeric column called "id" --
-    id INT PRIMARY KEY,
+    PRIMARY KEY (id) NOT NULL,
     -- Makes a string column called "name" --
     name VARCHAR(30) 
 );
 
 -- Creates the table "position" within company_db --
 CREATE TABLE position (
+    -- A primary key that auto-increments--
+    id INT NOT NULL AUTO_INCREMENT,
     -- Sets id as this table's primary key which means all data contained within it will be unique --
-    id INT PRIMARY KEY,
+    PRIMARY KEY (id) NOT NULL,
     -- Makes a string column called "title" --
     title VARCHAR(30),
     -- Makes values in binary format --
-    salary DECIMAL,
+    salary DECIMAL NOT NULL,
     -- Creates a numeric column called "department_id" --
-    department_id INT
+    department_id INT NOT NULL
 );
 
 -- Creates the table "employee" within company_db --
 CREATE TABLE employee (
+    -- A primary key that auto-increments--
+    id INT NOT NULL AUTO_INCREMENT,
     -- Sets id as this table's primary key which means all data contained within it will be unique --
-    id INT PRIMARY KEY,
+    PRIMARY KEY (id) NOT NULL,
     -- Makes a string column called "first_name" --
     first_name VARCHAR(30),
     -- Makes a string column called "last_name" --
     last_name VARCHAR(30),
     -- Creates a numeric column called "role_id" --
-    role_id INT,
+    role_id INT NOT NULL, 
     -- Creates a numeric column called "manager_id" --
-    manager_id INT
+    manager_id INT NOT NULL
 );
-
--- Updates the row where the column "example, need to change this" --
-UPDATE people
-SET has_pet = true, pet_name = "Franklin", pet_age = 2
-WHERE id = 4;
-
-SELECT * FROM people;
