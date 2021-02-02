@@ -83,5 +83,3 @@ Check out the instructions above in this file as an example.
 
 For more information about the license, please click on the link below:
 [License](https://opensource.org/licenses/Apache)
-
-![Database Schema](Assets/schema.png)
